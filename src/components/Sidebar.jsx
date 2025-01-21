@@ -85,13 +85,20 @@ return (
             <div className="px-2 flex justify-between text-lg  w-full align-top">
                 <div>
                 <h3>Today Task</h3>
-                <h4>
+                { user ? (
+                    <h4>
                     {todosToday.length}
                 </h4>
+                ) : (
+                    <h4>0</h4>
+                )
+
+                }
                 </div>
                 <button><IoMdInformationCircleOutline size={24}/></button>
             </div>
-            <div className=" my-6 mx-2 bg-gray-200 rounded-lg h-6 relative">
+            {user ? (
+                <div className=" my-6 mx-2 bg-gray-200 rounded-lg h-6 relative">
                 <div
                     className="bg-blue-500 h-6 rounded-lg transition-all duration-300"
                     style={{ width: `${percentage}%` }}
@@ -100,6 +107,19 @@ return (
                     {completed} / {total} ({Math.round(percentage) || 0 }%) 
                 </div>
             </div>
+            ) : (
+                <div className=" my-6 mx-2 bg-gray-200 rounded-lg h-6 relative">
+                <div
+                    className="bg-blue-500 h-6 rounded-lg transition-all duration-300"
+                    style={{ width: `${0}%` }}
+                ></div>
+                <div className="absolute inset-0 flex justify-center items-center text-sm font-medium text-gray-800">
+                    {0} / {0} ({Math.round(0) || 0 }%) 
+                </div>
+            </div>
+            )
+
+            }
         </div>
         </div>
     </div>

@@ -43,6 +43,7 @@ const Login = () => {
                 onChange={handleChange}
                 className="border bg-transparent w-72 p-2 rounded focus:outline-none"
                 required
+                autoComplete='off'
             />
             </div>
             <div className='flex flex-col'>
@@ -55,6 +56,7 @@ const Login = () => {
                 onChange={handleChange}
                 className="border bg-transparent p-2 rounded focus:outline-none"
                 required
+                autoComplete='off'
             />
             </div>
             <div className='flex flex-col justify-center'>
