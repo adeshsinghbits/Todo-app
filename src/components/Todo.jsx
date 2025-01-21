@@ -31,13 +31,13 @@ function Todo() {
     
     return (
         <div className={`flex flex-col top-12 overflow-auto right-0 absolute  transition-all ml-4 mt-4 ${
-            isOpen ? 'left-72 right-0' : 'left-0 right-0'
+            isOpen ? ' md:left-72 right-0' : 'left-0 right-0'
         }`}>
         <div className="pl-6 text-xl font-semibold">
             <h2>To do</h2>
         </div>
-        <div className="flex w-full">
-        <div className=" p-6 max-w-2xl w-full  shadow-md">
+        <div className="md:flex ">
+        <div className=" p-6 max-w-2xl md:w-1/2   shadow-md">
             <div className="flex relative mb-4 h-32 rounded-lg bg-gray-300 border-b-2 border-gray-600">
             <input
                 type="text"
@@ -63,7 +63,7 @@ function Todo() {
             </button>
             </div>
             {searchQuery === "" ? (
-                <ul className="w-full h-96 overflow-auto">
+                <ul className="w-full  overflow-auto">
                 {todos.map((todo) => (
                     <motion.li
                     initial={{ opacity: 0, y: 40 }}
@@ -137,7 +137,7 @@ function Todo() {
 
             }
         </div>
-        <div className="w-full mr-4 font-semibold">
+        <div className="w-full ml-8 font-semibold">
             <h3 className="text-xl">Completed</h3>
             <div>
             <ul>

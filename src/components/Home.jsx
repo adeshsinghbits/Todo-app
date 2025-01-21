@@ -1,13 +1,24 @@
 import { useSelector } from "react-redux";
+import { useEffect } from "react";
 
 function Home() {
     const isOpen = useSelector((state) => state.sidebar.isOpen);
     const user = useSelector((state) => state.auth.user); 
     const username = user?.name;
+    const darkMode = useSelector((state) => state.theme.darkMode);
+      
+      useEffect(() => {
+        if (darkMode) {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+      }, [darkMode]);
+    
 
     return (
-        <div className={`flex flex-col  top-20 right-0 absolute  transition-all ${
-            isOpen ? 'left-72 right-0' : 'left-0 right-0'
+        <div className={`flex flex-col min-h-screen ${darkMode ? 'bg-gray-800 text-white' : 'bg-white text-gray-800'}  top-20 right-0 absolute  transition-all ${
+            isOpen ? 'md:left-72 right-0' : 'left-0 right-0'
         }`}>
             <section className="pt-4">
         <div className="container mx-auto text-center px-6">

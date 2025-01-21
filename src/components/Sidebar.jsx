@@ -26,10 +26,10 @@ function Sidebar() {
 
 
 return (
-    <div className={`flex flex-col fixed left-0 top-20 bottom-0  w-80 h-full  rounded-md px-2 mx-2 transform transition-transform ${
+    <div className={`flex bg-black  flex-col fixed left-0 top-0   w-80 h-full  rounded-md px-8  transform transition-transform ${
         isOpen ? 'translate-x-0' : '-translate-x-full'
     }`}>
-        <div className="flex flex-col relative w-60 items-center mt-2">
+        <div className="flex flex-col relative top-20 w-60 items-center mt-2">
             <a href="/profile" className="absolute z-50">
                 <img 
                     src={profileImage || userImg} 
@@ -45,7 +45,7 @@ return (
 
             }
         </div>
-        <div className="flex flex-col w-60 absolute top-16 bg-gray-200 text-black pt-28 px-2 ">
+        <div className="flex flex-col w-60 absolute md:top16 top-32 bg-gray-200 text-black pt-28 px-2 ">
         <div className="mx-2 bg-slate-500 py-2 rounded-md">
                 <NavLink 
                     to="/todo"
@@ -81,7 +81,7 @@ return (
         <div className="mx-2 my-4 bg-slate-500 py-2 rounded-md">
             <button className="my-2 px-2 inline-flex text-lg gap-4 hover:bg-gray-200 w-full"><MdAdd className="mt-1"/> <p>Add list</p></button>
         </div>
-        <div className="mx-2  bg-slate-500 py-2 rounded-md">
+        <div className="mx-2 bg-slate-500 mb-4 rounded-md">
             <div className="px-2 flex justify-between text-lg  w-full align-top">
                 <div>
                 <h3>Today Task</h3>
