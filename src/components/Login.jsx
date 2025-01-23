@@ -2,13 +2,13 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { login } from '../features/authSlice';
 import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import Msg from './Msg';
 
 const Login = () => {
+  const [status, setStatus] = useState(null);
   const [form, setForm] = useState({ email: '', password: '' });
   const dispatch = useDispatch();
   const isOpen = useSelector((state) => state.sidebar.isOpen);
-  const navigatate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -18,12 +18,28 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     try {
-      dispatch(login(form)); // Dispatch login action
-      alert('Login successful!');
-      navigatate('/todo')
+      dispatch(login(form)); 
+      setTimeout(() => {
+        setForm({ email: '', password: '' });
+        setStatus({
+          type: "success", 
+          message: "Login successful! Welcome to the platform 🎉",
+        });
+      }, 1000);
+      
     } catch (error) {
-      alert(error.message);
+      setTimeout(() => {
+        setForm({name: '', email: '', password: '', image: null });
+        setStatus({
+          type: "error", 
+          message: error.message,
+        });
+      }, 1000);
     }
+  };
+
+  const closeMessage = () => {
+    setStatus(null); 
   };
 
   return (
@@ -66,6 +82,16 @@ const Login = () => {
                 <p className="text-center">Already have an account? <a href="/signup" className="text-blue-800">Signup</a></p>
             </div>
             </form>
+            <div  className='absolute right-0 top-20'>
+            {status && (
+          <Msg
+            type={status.type}
+            message={status.message}
+            onClose={closeMessage}
+            duration={3000} // Auto-dismiss after 3 seconds
+          />
+        )}
+            </div>
         </div>
     </div>
   );

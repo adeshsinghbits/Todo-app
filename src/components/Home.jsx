@@ -34,9 +34,9 @@ function Home() {
                     <p className="bg-gradient-to-r from-teal-400 to-blue-500 text-white text-lg px-6 py-3 rounded-lg hover:from-pink-500 hover:to-orange-500">Welcome {username}</p>
                 </div>
             ) : (
-                    <a href="/signup" className="bg-gradient-to-r from-teal-400 to-blue-500 text-white text-lg px-6 py-3 rounded-lg hover:from-pink-500 hover:to-orange-500">
+                    <button onClick={() => {window.location.href = '/login'}} className="bg-gradient-to-r from-teal-400 to-blue-500 text-white text-lg px-6 py-3 rounded-lg hover:from-pink-500 hover:to-orange-500">
                     Get Started
-                    </a>
+                    </button>
             )
 
             }

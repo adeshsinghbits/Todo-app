@@ -23,7 +23,10 @@ function Todo() {
         }
     };
 
-    
+    const handletodo = (id) => {
+        console.log(id);
+        
+    }
     
     useEffect(() => {
         localStorage.setItem("list", JSON.stringify(todos));
@@ -51,7 +54,7 @@ function Todo() {
                     selected={selectedDate}
                     onChange={(date) => setSelectedDate(date)}
                     dateFormat="MMMM DD, yyyy"
-                    placeholderText= "+ due date"
+                    placeholderText= "+ add date"
                     className="text-gray-900 input bg-transparent focus:outline-none ml-2 mb-2"
                 />
             </div>
@@ -70,6 +73,7 @@ function Todo() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: 40 }}
                     key={todo.id}
+                    onClick={() => handletodo(todo.id)}
                     className="flex w-full justify-between border-b-2 border-gray-600 px-4 py-2 rounded mt-3"
                     >
                     <input
@@ -104,6 +108,7 @@ function Todo() {
                 {filteredItems.map((todo) => (
                     <li
                         key={todo.id}
+                        onClick={() => handletodo(todo.id)}
                         className="flex w-full justify-between border-b-2 border-gray-600 px-4 py-2 rounded mt-3"
                     >
                     <input
@@ -140,17 +145,17 @@ function Todo() {
         <div className="w-full ml-8 font-semibold">
             <h3 className="text-xl">Completed</h3>
             <div>
-            <ul>
+            <ul className="mt-8">
             {todos.map((todo) => (
-                <motion.li
-                initial={{ opacity: 0, y: 40 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 40 }}
+                <li
                 key={todo.id}
-                className=" w-full rounded-md"
+                className="flex rounded"
+                onClick={() => handletodo(todo.id)}
                 >
                 { todo.completed && (
-                    <div className="flex justify-between border-b-2 border-gray-600 w-full p-4 mt-3">
+                    <div className="flex mr-8 w-full py-3 justify-around  border-b-2 border-gray-600"
+                    
+                    >
                         <input
                     type="checkbox"
                     checked={todo.completed}
@@ -173,7 +178,7 @@ function Todo() {
                 </div>
                 )
                 }
-            </motion.li>
+            </li>
             ))}
             </ul>
             </div>

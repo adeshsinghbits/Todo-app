@@ -18,7 +18,7 @@ return (
         </button>
         <a 
             href="/"
-            className="text-white font-bold text-xl ml-3 my-auto">TODOBITS</a>
+            className="text-white hidden md:block font-bold text-xl ml-3 my-auto">TODOBITS</a>
         </div>
         <div className="flex my-2">
             <input

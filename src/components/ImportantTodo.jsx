@@ -15,7 +15,7 @@ function ImportantTodo() {
         }, [todos]);
 
     return (
-        <div className={`flex flex-col top-20 right-0 absolute  transition-all ${
+        <div className={`flex flex-col top-20 right-0 absolute md:ml-10  transition-all ${
             isOpen ? 'md:left-72 right-0' : 'left-0 right-0'
         }`}>
             <div>

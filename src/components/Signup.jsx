@@ -3,13 +3,13 @@ import { useDispatch } from 'react-redux';
 import { signup } from '../features/authSlice';
 import { useSelector } from 'react-redux';
 import { useId } from 'react';
-import { useNavigate } from 'react-router-dom';
+import Msg from './Msg';
 
 const Signup = () => {
+  const [status, setStatus] = useState(null);
   const [form, setForm] = useState({name: '', email: '', password: '', image: null, id: useId() });
   const isOpen = useSelector((state) => state.sidebar.isOpen);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const handleChange = (e) => {
     const { name, value } = e.target;
     setForm({ ...form, [name]: value });
@@ -28,15 +28,24 @@ const Signup = () => {
     e.preventDefault();
     try {
           dispatch(signup(form)); 
-          navigate('/login');
-          alert('SignUp successful!');
+          setTimeout(() => {
+            setForm({name: '', email: '', password: '', image: null });
+            setStatus({
+              type: "success", 
+              message: "Signup successful! Welcome to the platform 🎉",
+            });
+          }, 1000);
         } catch (error) {
           alert(error.message);
         }
   };
 
+  const closeMessage = () => {
+    setStatus(null); 
+  };
+
   return (
-    <div className={`flex flex-col items-center top-12 overflow-auto right-0 absolute  transition-all ml-4 mt-4 ${
+    <div className={`flex flex-col relative items-center top-12 overflow-auto right-0   transition-all ml-4 mt-4 ${
       isOpen ? 'left-72 right-0' : 'left-0 right-0'
   }`}>
     <h1 className="text-2xl text-center font-bold mb-4">Sign Up</h1>
@@ -94,6 +103,14 @@ const Signup = () => {
         </div>
       </form>
     </div>
+    <div className='absolute right-0 top-20'>{status && (
+          <Msg
+            type={status.type}
+            message={status.message}
+            onClose={closeMessage}
+            duration={3000} // Auto-dismiss after 3 seconds
+          />
+        )}</div>
   </div>
     
   );
